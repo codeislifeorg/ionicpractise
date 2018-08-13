@@ -1,0 +1,114 @@
+
+<ion-header class="myapp-header" no-border>
+    <ion-navbar color="myapp-grey">
+      <ion-title>Compare Loans</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="myapp">
+  
+    <form 
+      
+      class="form"
+      #loanCompareForm="ngForm"
+      name="loanCompareForm"
+      (ngSubmit)="calculate(loanCompareForm)">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6 text-center><h2>Loan 1</h2></ion-col>
+          <ion-col col-6 text-center><h2>Loan 2</h2></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 text-center>Principal</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-5>
+            <ion-item>
+              <ion-input 
+                required
+                [(ngModel)]="principal1"
+                name="principal1"
+                type="number"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-2 text-center><ion-icon name="code"></ion-icon></ion-col>
+          <ion-col col-5>
+            <ion-item>
+              <ion-input 
+                required
+                [(ngModel)]="principal2"
+                name="principal2"
+                type="number"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-12 text-center>Interest</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-5>
+            <ion-item>
+              <ion-input 
+                required
+                [(ngModel)]="interest1"
+                name="interest1"
+                type="number"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-2 text-center><ion-icon name="code"></ion-icon></ion-col>
+          <ion-col col-5>
+            <ion-item>
+              <ion-input 
+                required
+                [(ngModel)]="interest2"
+                name="interest2"
+                type="number"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-12 text-center>Tenure (Years)</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-5>
+              <ion-item>
+                <ion-input 
+                  required
+                  [(ngModel)]="tenure1"
+                  name="tenure1"
+                  type="number"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-2 text-center><ion-icon name="code"></ion-icon></ion-col>
+            <ion-col col-5>
+              <ion-item>
+                <ion-input 
+                  required
+                  [(ngModel)]="tenure2"
+                  name="tenure2"
+                  type="number"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+      <ion-grid>
+          <ion-row>
+            <ion-col col-3></ion-col>
+            <ion-col col-3>
+              <button class="myapp-btn" ion-button icon-left full color="myapp-blue">
+                Reset
+              </button>
+            </ion-col>
+    
+            <ion-col col-3>
+              <button class="myapp-btn" ion-button icon-left full color="myapp-blue" type="submit">
+                  Calculate
+                </button>
+            </ion-col>
+            <ion-col col-3></ion-col>
+          </ion-row>
+        </ion-grid>
+    </form>
+  </ion-content>

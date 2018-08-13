@@ -1,0 +1,104 @@
+<!--
+  Generated template for the EditProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="myapp-header" no-border>
+    <ion-navbar color="myapp-grey">
+      <ion-title>{{ id == null ? 'Save Profile' : 'My Profile'}}</ion-title>
+      <ion-buttons end>
+        <button ion-button (click)="closeModal()">
+          <ion-icon name="close-circle"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="myapp">
+    <form 
+      class="form"
+      #profileSaveForm="ngForm"
+      (ngSubmit)="saveProfile(profileSaveForm)"
+      name="profileSaveForm">
+  
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Profile Name</ion-label>
+        <ion-input 
+          [(ngModel)]="profileName"
+          name="profileName"
+          type="text"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label stacked>Loan Scheduled Date</ion-label>
+        <ion-datetime
+          [(ngModel)]="loanDate"
+          name="loanDate"
+          type="number"></ion-datetime>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label stacked>Principal</ion-label>
+        <ion-input 
+          disabled
+          [(ngModel)]="EmiResultSet.principal"
+          name="EmiResultSet.principal"
+          type="number"></ion-input>
+      </ion-item>
+    
+        <ion-item>
+          <ion-label stacked>Interest</ion-label>
+          <ion-input 
+            disabled
+            [(ngModel)]="EmiResultSet.interest"
+            name="EmiResultSet.interest"
+            type="number"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label stacked>Tenure in {{ monthOrYear }}</ion-label>
+          <ion-input 
+            disabled
+            [(ngModel)]="EmiResultSet.tenure"
+            name="EmiResultSet.tenure"
+            type="number"></ion-input>
+        </ion-item>
+      <ion-item>
+          <ion-label stacked>EMI</ion-label>
+          <ion-input 
+            disabled
+            [(ngModel)]="EmiResultSet.emi"
+            name="EmiResultSet.emi"
+            type="number"></ion-input>
+        </ion-item>      
+    </ion-list>
+  
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+        </ion-col>
+  
+        <ion-col col-4>
+          <button class="myapp-btn" ion-button icon-left full color="myapp-blue" type="submit">
+            Save
+          </button>
+        </ion-col>
+  
+        <ion-col col-4>
+          <button 
+            *ngIf="id"
+            class="myapp-btn" ion-button icon-left full 
+            color="myapp-blue" 
+            type="button" 
+            (click)="getDetails()"
+            >
+            Get Details
+            </button>
+        </ion-col>
+      </ion-row>
+      
+    </ion-grid>
+    </form>
+  </ion-content>

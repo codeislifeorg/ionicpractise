@@ -1,0 +1,223 @@
+<ion-header class="myapp-header" id="calculateEmiHeader"  no-border>
+    <ion-navbar color="myapp-grey">
+      <ion-title *ngIf="calcType == 'emi'">
+        Calculate your EMI
+      </ion-title>
+      <ion-title *ngIf="calcType == 'principal'">
+        Calculate your Principal Amount
+      </ion-title>
+      <ion-title *ngIf="calcType == 'tenure'">
+        Calculate your Tenure in Months
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="myapp">
+    <form 
+      id="emiCalculateForm"
+      class="form"
+      #emiCalculateForm="ngForm"
+      (ngSubmit)="calculate(emiCalculateForm)"
+      name="emiCalculateForm">
+  
+      <p id="principalAmountInWords" text-uppercase>{{ principalAmountInWords }}</p>
+  
+      <ion-list>
+        
+        <ion-item 
+          class="no-top-border"
+          *ngIf="calcType == 'emi' || calcType == 'roi' || calcType == 'tenure'">
+          <ion-label stacked>Principal</ion-label>
+          <ion-input 
+            required
+            clearInput=true min="0" max="5"
+            [(ngModel)]="principal"
+            (ngModelChange)="onPrincipalChange()"
+            (keyup)="onKeyUp($event)"
+            name="principal"
+            type="number"
+            ></ion-input>
+        </ion-item>
+        
+        <ion-item 
+          *ngIf="calcType == 'roi' || calcType == 'principal' || calcType == 'tenure'">
+          <ion-label stacked>EMI</ion-label>
+          <ion-input 
+            required
+            clearInput=true min="0" max="5"
+            [(ngModel)]="emi"
+            name="emi"
+            type="number"
+          ></ion-input>
+        </ion-item> 
+      
+        <ion-item
+          *ngIf="calcType == 'emi' || calcType == 'principal' || calcType == 'tenure'">
+          <ion-label stacked>Interest</ion-label>
+          <ion-input 
+            required 
+            [(ngModel)]="interest"
+            name="interest"
+            type="number"></ion-input>
+        </ion-item>
+  
+        <ion-item
+          *ngIf="calcType == 'emi' || calcType == 'principal' || calcType == 'roi'">
+          <ion-label stacked>Tenure in {{ monthOrYear }}</ion-label>
+          <ion-input 
+            required 
+            [(ngModel)]="tenure"
+            name="tenure"
+            type="number"></ion-input>
+          <ion-toggle 
+            color="myapp-blue" 
+            [(ngModel)]="selectTenure" 
+            (ngModelChange)="onSelectTenure($event)" 
+            name="selectTenure"
+            checked="true"></ion-toggle>
+        </ion-item>     
+    </ion-list>
+  
+    <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <button class="myapp-btn" ion-button icon-left full color="myapp-blue">
+              Reset
+            </button>
+          </ion-col>
+  
+          <ion-col col-4>
+            <button class="myapp-btn" ion-button icon-left full color="myapp-blue" type="submit">
+                Calculate
+              </button>
+          </ion-col>
+  
+          <ion-col col-4>
+            <button 
+              class="myapp-btn" ion-button icon-left full 
+              color="myapp-blue" 
+              type="button" 
+              (click)="saveProfile()"
+              [disabled]="saveButtonDisable" 
+              >
+                Save
+              </button>
+          </ion-col>
+        </ion-row>
+      
+      </ion-grid>
+      </form>
+  
+    <ion-card 
+      *ngIf="EmiResultSet"
+      id="emiDetailCard">
+      <ion-card-content>
+        <div
+          *ngIf="calcType == 'emi'" 
+          text-center>
+          Your EMI is
+            <ion-badge class="badge-result-emi" color="myapp-orange" item-end>
+              &#8377; {{ EmiResultSet.emi.toLocaleString("en-IN", {maximumFractionDigits: 2})   }}
+            </ion-badge> for {{ EmiResultSet.tenureInWords }}
+        </div>
+
+        <div
+          *ngIf="calcType == 'principal'" 
+          text-center>
+          Your Principal Amount is
+            <ion-badge class="badge-result-emi" color="myapp-orange" item-end>
+              &#8377; {{ EmiResultSet.principal.toLocaleString("en-IN", {maximumFractionDigits: 2})  }}
+            </ion-badge> for {{ EmiResultSet.tenureInWords }}
+        </div>
+
+        <div
+          *ngIf="calcType == 'tenure'" 
+          text-center>
+          You will pay for the period of 
+            <ion-badge class="badge-result-emi" color="myapp-orange" item-end>
+              {{ EmiResultSet.tenureInWords  }}
+            </ion-badge>
+        </div>
+
+       
+        <ion-grid>
+          <ion-row>
+              <ion-col col-6>
+                Principal Amount:
+              </ion-col>
+              <ion-col col-6 text-right class="">
+                  <ion-badge class="result-label-number" color="myapp-grey">
+                    &#8377; {{ EmiResultSet.principal.toLocaleString("en-IN", {maximumFractionDigits: 2})  }}
+                  </ion-badge>
+              </ion-col>
+          </ion-row>
+
+          <ion-row>
+              <ion-col col-6>
+                Interest Payable:
+              </ion-col>
+              <ion-col col-6 text-right class="">
+                  + 
+                  <ion-badge class="result-label-number" color="myapp-grey">
+                    &#8377; {{ EmiResultSet.interestPayable.toLocaleString("en-IN", {maximumFractionDigits: 2}) }}
+                  </ion-badge>
+              </ion-col>
+          </ion-row>
+
+          <ion-row>
+              <ion-col col-6>
+                Total Amount to be Paid:
+              </ion-col>
+              <ion-col col-6 text-right class="">
+                =  
+                <ion-badge class="result-label-number" color="myapp-grey">
+                  &#8377; {{ EmiResultSet.totalPayment.toLocaleString("en-IN", {maximumFractionDigits: 2})  }}
+                </ion-badge>
+              </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card 
+      *ngIf="EmiResultSet"
+      id="detailSetTable">
+      
+      <ion-card-content>       
+        <ion-grid>
+          <ion-row>
+            <ion-col text-center col-3>
+              <b>Month</b>
+            </ion-col>
+            <ion-col text-center col-3>
+              <b>Principal</b>
+            </ion-col>
+            <ion-col text-center col-3>
+              <b>Interest</b>
+            </ion-col>
+            <ion-col text-center col-3>
+              <b>Balance</b>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+          <ion-row *ngFor="let item of DetailedBreakUp; let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+            <ion-col text-left col-3>
+              {{item.date}}
+            </ion-col>
+            <ion-col text-right col-3>
+              {{item.principal.toLocaleString("en-IN", {maximumFractionDigits: 2}) }}
+            </ion-col>
+            <ion-col text-right col-3>
+              {{item.interest.toLocaleString("en-IN", {maximumFractionDigits: 2}) }}
+            </ion-col>
+            <ion-col text-right col-3>
+              {{item.balance.toLocaleString("en-IN", {maximumFractionDigits: 2}) }}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>

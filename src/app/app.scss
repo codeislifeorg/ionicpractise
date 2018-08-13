@@ -14,3 +14,126 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+$myapp-blue: #4262f1;
+$myapp-blue-dark: #3B5ACF;
+$myapp-grey:   #fafafa;
+$myapp-button-size: 1.2rem;
+$myapp-grey-text: #1C2833;
+
+body {
+    background: $myapp-grey;
+}
+
+.myapp {
+    background: $myapp-grey;
+}
+
+.myapp-header .toolbar-title-md,
+.myapp-header .toolbar-title-ios,{
+    font-weight: lighter;
+}
+
+
+h4 {
+    font-size: 1.4rem;
+}
+
+.heading {
+    margin-bottom: 0;
+}
+
+.heading-para {
+    color: #C0C0C0;
+    margin-top: 0;
+}
+
+.dashboard-list {
+    margin-top: 40px;
+}
+.dashboard-list .item {
+    height: 90px;
+    background: $myapp-grey;
+}
+
+.dashboard-list h3 {
+    text-transform: uppercase;
+}
+
+.dashboard-list p {
+    font-size: 1.2rem;
+}
+
+#dash {
+    background: $myapp-blue;
+    padding-top: 12px;
+}
+
+#dash .tool-links {
+    border-radius: 25px;
+    border:5px solid $myapp-blue-dark;  
+    background: #fff;   
+    height: 55px; 
+    width: 60px;
+    font-size: 2.6rem;
+    color: $myapp-blue-dark;
+}
+
+#dash .tool-text {
+    color: #fff;
+} 
+
+// Butons
+.myapp-btn {
+    border-radius: 25px;
+    height: 40px;
+    font-size: $myapp-button-size;
+}
+
+.item-md, 
+.item-ios {
+    background: $myapp-grey;
+}
+
+.form .no-border .item-inner {
+    border: 0 !important;
+}
+
+.form  .text-input {
+    font-size: 2.6rem;
+}
+
+.form  #principalAmountInWords {
+    height: 34px;
+    padding: 4px 8px;
+    margin: auto 8px;
+}
+
+.no-top-border {
+    border-top: 0 !important;
+}
+
+#emiDetailCard .result-label {
+    font-size: 1.2rem;
+    color: $myapp-grey-text;
+}
+
+.badge-result-emi {
+    font-size: 3rem;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.result-label-number {
+    font-size: 2rem;
+}
+
+#detailSetTable .odd {
+    background: $myapp-grey;
+}
+
+// History Page
+.badge-history-principal {
+    font-size: 2rem;
+    padding: 2px 8px;
+}

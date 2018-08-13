@@ -1,17 +1,112 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
-</ion-content>
+<ion-header  no-border>
+    <ion-navbar color="myapp-blue">
+      <ion-title>EMI Calculator</ion-title>
+  
+      <ion-buttons end>
+          <button ion-button icon-only (click)="openModal()">
+              <ion-icon name="settings"></ion-icon>
+          </button>
+        </ion-buttons>
+    </ion-navbar>
+  </ion-header> 
+  
+  <ion-content class="myapp">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+            <h4 class="heading" ion-text color="dark">FINANCIAL TOOL CALCULATOR TOOL</h4>
+            <p class="heading-para">Your personal financial tool to calculate for Home Loan, Personal Loan and Car Loan</p>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row id="dash">  
+        <ion-col col-3 text-center>
+          <a (click)="openEmi('emi')"
+            class="tool-links"
+            ion-button  color="dark" outline >
+            <!-- <ion-icon name="cash"></ion-icon>             -->
+            &#x20b9;
+          </a>
+          <p class="tool-text" >EMI</p>
+        </ion-col>
+  
+        <ion-col col-3 text-center>
+          <a
+            (click)="openEmi('roi')"
+            class="tool-links" 
+            ion-button  color="dark" outline >
+            &#247;
+            <!-- <ion-icon name="pulse"></ion-icon>             -->
+          </a>
+          <p class="tool-text">Rate of Interest</p>
+        </ion-col>
+  
+        <ion-col col-3 text-center>
+          <a
+            (click)="openEmi('tenure')"
+            class="tool-links" 
+            ion-button  color="dark" outline >
+            <ion-icon name="time"></ion-icon>            
+          </a>
+          <p class="tool-text">Tenure</p>
+  
+        </ion-col>
+  
+        <ion-col col-3 text-center>
+          <a
+            (click)="openEmi('principal')"
+            class="tool-links"
+            ion-button  color="dark" outline >
+            <ion-icon name="cash"></ion-icon>            
+          </a>
+          <p class="tool-text">Principal</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <ion-list class="dashboard-list">
+      <ion-item (click)="loanCompare()">
+        <ion-icon ios="ios-git-compare" md="md-git-compare" item-start></ion-icon>
+        <h3>Loan Compare</h3>
+        <p>Compare two loan values to make out a difference</p>
+      </ion-item>
+      <ion-item (click)="history()">
+        <ion-icon name="list" item-start></ion-icon>
+        <h3>History</h3>
+        <p>Browser through the list of calculations you made</p>
+      </ion-item>
+  
+      <ion-item (click)="listProfiles()">
+        <!-- <ion-icon name="contact" item-start></ion-icon> -->
+        <ion-icon ios="ios-person" md="md-person" item-start></ion-icon>
+        <h3>My Loan Profile</h3>
+        <p>Look for your served profiles</p>
+      </ion-item>
+  
+      <ion-item>
+        <ion-icon ios="ios-heart" md="md-heart" color="fusionred" item-start></ion-icon>
+        <h3>Share to your friend</h3>
+        <p>Invite your friend to help them calculate their emi's using this app</p>
+      </ion-item>
+  
+      <!-- <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-4 text-center>
+                <ion-icon name="star"></ion-icon> 
+            </ion-col>
+            <ion-col col-4>
+                <ion-icon name="share"></ion-icon>
+            </ion-col>
+            <ion-col col-4>
+                <ion-icon name="star"></ion-icon> 
+            </ion-col>
+          </ion-row>
+        </ion-grid>      
+      </ion-item> -->
+  
+    </ion-list>
+  
+  
+   
+  </ion-content>

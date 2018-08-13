@@ -1,0 +1,31 @@
+<ion-header class="myapp-header" no-border>
+    <ion-navbar color="myapp-grey" >
+      
+      <ion-title>List Profile</ion-title>
+  
+      <ion-buttons right *ngIf="from != 'home'">
+          <button ion-button (click)="goHome()">
+              <ion-icon name="home"></ion-icon>
+          </button>
+        </ion-buttons>
+    </ion-navbar>
+    <!-- <ion-buttons>
+        <button ion-button start>
+            <ion-icon name="home"></ion-icon>
+        </button>
+      </ion-buttons> -->
+  </ion-header>
+  
+  <ion-content class="myapp">
+    <ion-list>
+      <ion-item *ngFor="let item of MyProfiles" 
+      (click)="openProfile(item)">
+        <div>
+            <h2>{{ item.profileName }}</h2>
+            <h3><ion-badge class="badge-history-principal" color="myapp-orange" item-end>&#8377; {{ item.principal.toLocaleString("en-IN", {maximumFractionDigits: 2}) }}</ion-badge> 
+            &#64; <ion-badge item-end>{{ item.interest }}%</ion-badge>for <ion-badge item-end>{{ item.tenureInWords }}</ion-badge></h3>
+        </div>
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
